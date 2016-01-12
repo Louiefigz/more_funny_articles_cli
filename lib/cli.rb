@@ -15,34 +15,42 @@ class CLI
 
     @@list.each.with_index {|c, i| puts "#{i+1}.  #{c.keys[0]}"}
 
+    puts "Which category would you like to read?  Choose a number on the list or enter 'exit': "
 
-            puts "Which category would you like to read?  Choose a number on the list or enter 'exit': "
-
-            input = gets.strip.downcase
+    input = gets.strip.downcase
         if input == "exit"
             puts "Good bye!"
             exit
         end 
 
         else 
-            Categories.new(@@list[input.to_i - 1].values[0])
+            if input.to_i <= @@list.count
+                Categories.new(@@list[input.to_i - 1].values[0])
+            else
+                puts "///////////Please select a number from the list above//////////////"
+                start
+            end 
 
             Article.all.each.with_index {|c, i| puts "\n\n #{i+1}.  HEADLINE:\n#{c.header}\n\n DESCRIPTION:\n#{c.description}\n"}
 
-            puts "Which article would you like to read? Choose the number: "
+            puts "\nWhich article would you like to read? Choose the number: "
 
             input_2 = gets.strip.to_i
+            # binding.pry
                 
-
+        if input_2 <= Article.all.count
             article = Article.scrape_article(@@list[input.to_i - 1].values[0], input_2 - 1)
             puts "--------------------------------------------------------------------"
 
             puts "\nHEADLINE:\n#{article.header} \n\nARTICLE:\n#{article.article}"
             puts ""
             puts "--------------------------------------------------------------------"
+        else
+             puts "///////////Please select a number from the list above//////////////"
+            start
+        end 
 
             restart
-
   end
 
   def restart

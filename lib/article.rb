@@ -33,7 +33,6 @@ class Article
      # array = []
      # new_doc.css('.content-media .image') ? array << "Image" : array << "No Image"
      # new_doc.css('.content-text').text.strip == '' ? array << "No article provided" : array << new_doc.css('.content-text').text.strip
-      
      @@all[all_index]
    end
 
