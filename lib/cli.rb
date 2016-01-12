@@ -36,7 +36,7 @@ class CLI
             puts "\nWhich article would you like to read? Choose the number: "
 
             input_2 = gets.strip.to_i
-            # binding.pry
+
                 
         if input_2 <= Article.all.count
             article = Article.scrape_article(@@list[input.to_i - 1].values[0], input_2 - 1)

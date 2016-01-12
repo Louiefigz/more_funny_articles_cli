@@ -26,16 +26,8 @@ class Article
      url = article_links[all_index.to_i]
      new_doc = Nokogiri::HTML(open(url))
     
-
-     
      @@all[all_index].article = new_doc.css('.content-text').text.strip == '' ? "No article provided" : new_doc.css('.content-text').text.strip
 
-     # array = []
-     # new_doc.css('.content-media .image') ? array << "Image" : array << "No Image"
-     # new_doc.css('.content-text').text.strip == '' ? array << "No article provided" : array << new_doc.css('.content-text').text.strip
      @@all[all_index]
    end
-
-
-
 end 
