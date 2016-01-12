@@ -6,8 +6,10 @@ require 'more_funny_articles/version'
 Gem::Specification.new do |spec|
   spec.name          = "more_funny_articles"
   spec.version       = MoreFunnyArticles::VERSION
-  spec.authors       = ["Louiefigz"]
+  spec.authors       = ["Aaron Figueroa", "Roberto Mesado"]
   spec.email         = ["figueroa.aaron@gmail.com"]
+
+  spec
 
   spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}

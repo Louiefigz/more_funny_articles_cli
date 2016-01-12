@@ -1,21 +1,62 @@
+require 'pry'
 class CLI
+
+@@list = [
+    {"politics" => 'http://www.theonion.com/section/politics/'},
+    {"sports" => 'http://www.theonion.com/section/sports/'}, 
+    {"local"=> 'http://www.theonion.com/section/local/'}, 
+    {"business" => 'http://www.theonion.com/section/business'}, 
+    {"entertainment" => 'http://www.theonion.com/section/entertainment/'}, 
+    {"science technology" => 'http://www.theonion.com/section/science-technology/'}, 
+    {"after birth" => 'http://www.theonion.com/section/after-birth'}]
 
   def start
     puts "*************Welcome to the article scraper!!!!!!********"
 
-    Categories.all.each.with_index {|c, i| puts "#{i+1}.  #{c.keys[0]}"}
+    @@list.each.with_index {|c, i| puts "#{i+1}.  #{c.keys[0]}"}
 
 
-        # list out categories
-        # takes in user input 
-        # returns the header  
-        # returns description
-        # asks for user input for article
-        # returns article
-        # asks if you want to start over.
+            puts "Which category would you like to read?  Choose a number on the list or enter 'exit': "
 
+            input = gets.strip
+        if input == "exit"
+            puts "Good bye!"
+            exit
+        end 
 
+        else 
+            Categories.new(@@list[input.to_i - 1].values[0])
+
+            Article.all.each.with_index {|c, i| puts "\n\n #{i+1}.  #{c.header}\n\n #{c.description}"}
+
+            puts "Which article would you like to read? Choose the number: "
+
+            input_2 = gets.strip.to_i
+                
+
+            article = Article.scrape_article(@@list[input.to_i - 1].values[0], input_2 - 1)
+            puts "--------------------------------------------------------------------"
+
+            puts "\nHEADLINE:\n#{article.header} \n\nARTICLE:\n#{article.article}"
+            puts ""
+            puts "--------------------------------------------------------------------"
+
+            restart
 
   end
+
+  def restart
+    puts "Would you like to read another article? Enter (y/n)"
+    input = gets.strip.downcase 
+    if input == "y"
+        start
+    else
+        puts "Goodbye!!!!"
+        exit
+    end 
+  end 
+
+  
+
 
 end 
