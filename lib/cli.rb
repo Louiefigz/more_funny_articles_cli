@@ -18,7 +18,7 @@ class CLI
 
             puts "Which category would you like to read?  Choose a number on the list or enter 'exit': "
 
-            input = gets.strip
+            input = gets.strip.downcase
         if input == "exit"
             puts "Good bye!"
             exit
@@ -27,7 +27,7 @@ class CLI
         else 
             Categories.new(@@list[input.to_i - 1].values[0])
 
-            Article.all.each.with_index {|c, i| puts "\n\n #{i+1}.  #{c.header}\n\n #{c.description}"}
+            Article.all.each.with_index {|c, i| puts "\n\n #{i+1}.  HEADLINE:\n#{c.header}\n\n DESCRIPTION:\n#{c.description}\n"}
 
             puts "Which article would you like to read? Choose the number: "
 
